@@ -1,24 +1,100 @@
 package pz2015.habits.semestralny_l;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
+
+    private Button btnLogin;
+    private Button btnRegister;
+    private EditText editEmail;
+    private EditText editPassword;
+    private SessionManager sessionManager;
+
+    private final String TAG_LOGIN = "login";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        editEmail = (EditText) findViewById(R.id.email);
+        editPassword = (EditText) findViewById(R.id.password);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
+
+        // SessionManager
+        sessionManager = new SessionManager(getApplicationContext());
+
+        // User is already logged?
+        if (sessionManager.getIsLoggedIn()) {
+            // Logged
+            Intent intent = new Intent(MainActivity.this, UserActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        // btnLogin event click
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = editEmail.getText().toString();
+                String password = editPassword.getText().toString();
+
+                // Check for empty data
+                if (email.length() > 0 && password.length() > 0)
+                    checkLogin(email, password);
+                else
+                    // Empty data
+                    Toast.makeText(getApplicationContext(), "Please enter data!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // btnRegister event click
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void checkLogin(String email, String password) {
+        // Build list params
+        List<NameValuePair> list = new ArrayList<>();
+        list.add(new BasicNameValuePair("tag", TAG_LOGIN));
+        list.add(new BasicNameValuePair("email", email));
+        list.add(new BasicNameValuePair("password", password));
+
+        ConnectionManager connectionManager = new ConnectionManager(this, list);
+        connectionManager.execute();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        // I wont this! :<
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -36,4 +112,5 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
