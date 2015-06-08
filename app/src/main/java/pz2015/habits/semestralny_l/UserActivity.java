@@ -42,12 +42,40 @@ public class UserActivity extends Activity {
 
         txtName.setText(name);
 
+        btnEasyGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGame(AppConfig.LEVEL_EASY);
+            }
+        });
+
+        btnMediumGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGame(AppConfig.LEVEL_MEDIUM);
+            }
+        });
+
+        btnHardGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGame(AppConfig.LEVEL_HARD);
+            }
+        });
+
         btnLogout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 logoutUser();
             }
         });
+    }
+
+    private void startGame(int level) {
+        sessionManager.setLevel(level);
+        Intent intent = new Intent(UserActivity.this, BoardActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void logoutUser() {

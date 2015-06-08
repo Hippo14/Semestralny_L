@@ -28,6 +28,7 @@ public class SessionManager {
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_IS_SALT = "salt";
     private static final String KEY_IS_NAME = "name";
+    private static final String KEY_IS_LEVEL = "level";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -61,5 +62,16 @@ public class SessionManager {
 
     public String getName() {
         return this.sharedPreferences.getString(KEY_IS_NAME, null);
+    }
+
+    public int getLevel() { return this.sharedPreferences.getInt(KEY_IS_LEVEL, 4); }
+
+    public void setLevel(int level) {
+        this.editor.putInt(KEY_IS_LEVEL, level);
+
+        // commint changes
+        editor.commit();
+
+        Log.d(TAG, "Level session modified!");
     }
 }
