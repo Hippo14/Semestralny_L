@@ -32,6 +32,7 @@
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/lbl_name"
             android:textSize="24dp" />
 
         <Button
@@ -41,7 +42,7 @@
             android:background="@color/btn_exit_bg"
             android:text="@string/btn_exit"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/btn_exit"
             android:textSize="15dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"

@@ -1,4 +1,4 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Helpers;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,13 +7,12 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
+
+import pz2015.habits.semestralny_l.Activity.UserActivity;
 
 /**
  * Created by ASUS on 2015-06-07.

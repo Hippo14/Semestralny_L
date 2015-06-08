@@ -1,4 +1,4 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,9 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
+
+import pz2015.habits.semestralny_l.Helpers.AppConfig;
+import pz2015.habits.semestralny_l.R;
+import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
 public class UserActivity extends Activity {

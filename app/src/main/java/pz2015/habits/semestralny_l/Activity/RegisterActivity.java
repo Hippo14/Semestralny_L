@@ -1,4 +1,4 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,10 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pz2015.habits.semestralny_l.Helpers.ConnectionManager;
+import pz2015.habits.semestralny_l.R;
+import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
 public class RegisterActivity extends Activity {

@@ -1,9 +1,7 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +16,10 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pz2015.habits.semestralny_l.Helpers.ConnectionManager;
+import pz2015.habits.semestralny_l.R;
+import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
 public class MainActivity extends Activity {

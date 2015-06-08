@@ -1,9 +1,11 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Helpers;
 
 import android.content.Context;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+
+import pz2015.habits.semestralny_l.R;
 
 /**
  * Created by ASUS on 2015-06-08.

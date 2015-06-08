@@ -21,10 +21,11 @@
     <color name="btn_register_bg">#ffffff</color>
 
     <!-- User Colors-->
-    <color name="bg_user">#ffffffff</color>
+    <color name="bg_user">#ff00f3ff</color>
 
-    <color name="btn_game">#ff02a4c2</color>
-    <color name="btn_logut_bg">#ffc5037e</color>
+    <color name="btn_game_bg">#ff027a93</color>
+    <color name="btn_logut_bg">#ffffffff</color>
+    <color name="btn_logout">#ff00f3ff</color>
 
     <!-- Board Colors-->
     <color name="bg_board">#6ca75f00</color>
@@ -34,11 +35,13 @@
     <color name="btn_grey">#808080</color>
 
     <!-- End Colors-->
-    <color name="btn_exit_bg">#ffc5037e</color>
+    <color name="btn_exit_bg">#ffffffff</color>
+    <color name="btn_exit">#ff00f3ff</color>
 
 
     <color name="lbl_name">#333333</color>
     <color name="white">#ffffff</color>
+
 
 
 </resources>

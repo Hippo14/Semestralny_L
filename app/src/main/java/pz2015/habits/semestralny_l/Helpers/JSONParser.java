@@ -1,4 +1,4 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Helpers;
 
 import android.util.Log;
 
@@ -19,7 +19,6 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by ASUS on 2015-06-07.

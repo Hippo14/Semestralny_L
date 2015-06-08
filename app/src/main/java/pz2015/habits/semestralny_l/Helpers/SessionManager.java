@@ -1,8 +1,7 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInstaller;
 import android.util.Log;
 
 /**

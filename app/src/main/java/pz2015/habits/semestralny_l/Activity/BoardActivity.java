@@ -1,4 +1,4 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import java.util.Random;
+
+import pz2015.habits.semestralny_l.R;
+import pz2015.habits.semestralny_l.Helpers.SessionManager;
+import pz2015.habits.semestralny_l.Helpers.myButton;
 
 
 public class BoardActivity extends Activity {

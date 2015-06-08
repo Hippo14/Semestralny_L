@@ -1,4 +1,4 @@
-package pz2015.habits.semestralny_l;
+package pz2015.habits.semestralny_l.Helpers;
 
 /**
  * Created by ASUS on 2015-06-07.
