@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -21,11 +22,15 @@ public class BoardActivity extends Activity {
 
     private SessionManager sessionManager;
 
+    long startTime;
+    long difference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManager = new SessionManager(getApplicationContext());
 
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_board);
 
         NUM_ROWS = sessionManager.getLevel();
@@ -37,7 +42,9 @@ public class BoardActivity extends Activity {
         populatemyButtons();
 
         // randomize colors :)
-        randomize();
+        //randomize();
+
+        startTime = System.currentTimeMillis();
     }
 
     private void populatemyButtons() {
@@ -69,7 +76,7 @@ public class BoardActivity extends Activity {
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        gridmyButtonClicked(FINAL_COL, FINAL_ROW, myButtons);
+                        gridMyButtonClicked(FINAL_COL, FINAL_ROW, myButtons);
                         //WIN
                         if (checkAllButtons()) {
                             endGame();
@@ -83,12 +90,16 @@ public class BoardActivity extends Activity {
     }
 
     private void endGame() {
+        difference = System.currentTimeMillis() - startTime;
+
+        sessionManager.setTime(difference);
+
         Intent intent = new Intent(BoardActivity.this, EndGameActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void gridmyButtonClicked(int col, int row, myButton[][] array) {
+    private void gridMyButtonClicked(int col, int row, myButton[][] array) {
         myButton button = array[row][col];
         button.checkColor();
 

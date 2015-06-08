@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Login Colors-->
+    <color name="bg_login">#ff6302a6</color>
 
-    <color name="bg_login">#ff2dff00</color>
-    <color name="bg_register">#ffff2bb1</color>
-    <color name="bg_main">#ff0561ca</color>
-    <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
+    <color name="input_login_bg">#ffffff</color>
     <color name="input_login_hint">#999999</color>
-    <color name="input_register">#888888</color>
-    <color name="input_register_bg">#ffd1e7ff</color>
-    <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#26ae90</color>
-    <color name="btn_login_bg">#fffafcff</color>
-    <color name="btn_register_bg">#ff29b5ff</color>
-    <color name="lbl_name">#333333</color>
-    <color name="btn_logut_bg">#ffffb200</color>
-    <color name="btn_game">#ff00fffa</color>
+
+    <color name="btn_login">#ff6302a6</color>
+    <color name="btn_login_bg">#ffffff</color>
+
+    <!-- Register Colors-->
+    <color name="bg_register">#ff02a4c2</color>
+
+    <color name="input_register">#222222</color>
+    <color name="input_register_bg">#ffffff</color>
+    <color name="input_register_hint">#999999</color>
+
+    <color name="btn_register">#ff02a4c2</color>
+    <color name="btn_register_bg">#ffffff</color>
+
+    <!-- User Colors-->
     <color name="bg_user">#ffffffff</color>
 
-    <color name="button_red">#ffff0000</color>
-    <color name="button_green">#00ff00</color>
-    <color name="button_grey">#808080</color>
+    <color name="btn_game">#ff02a4c2</color>
+    <color name="btn_logut_bg">#ffc5037e</color>
+
+    <!-- Board Colors-->
     <color name="bg_board">#6ca75f00</color>
+
+    <color name="btn_red">#ffff0000</color>
+    <color name="btn_green">#00ff00</color>
+    <color name="btn_grey">#808080</color>
+
+    <!-- End Colors-->
+    <color name="btn_exit_bg">#ffc5037e</color>
+
+
+    <color name="lbl_name">#333333</color>
+    <color name="white">#ffffff</color>
 
 
 </resources>

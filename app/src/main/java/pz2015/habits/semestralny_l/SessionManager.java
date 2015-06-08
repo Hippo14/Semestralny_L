@@ -29,6 +29,7 @@ public class SessionManager {
     private static final String KEY_IS_SALT = "salt";
     private static final String KEY_IS_NAME = "name";
     private static final String KEY_IS_LEVEL = "level";
+    private static final String KEY_IS_TIME = "time";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -66,6 +67,8 @@ public class SessionManager {
 
     public int getLevel() { return this.sharedPreferences.getInt(KEY_IS_LEVEL, 4); }
 
+    public long getTime() { return this.sharedPreferences.getLong(KEY_IS_TIME, 0); }
+
     public void setLevel(int level) {
         this.editor.putInt(KEY_IS_LEVEL, level);
 
@@ -73,5 +76,14 @@ public class SessionManager {
         editor.commit();
 
         Log.d(TAG, "Level session modified!");
+    }
+
+    public void setTime(long time) {
+        this.editor.putLong(KEY_IS_TIME, time);
+
+        // commint changes
+        editor.commit();
+
+        Log.d(TAG, "Time session modified!");
     }
 }

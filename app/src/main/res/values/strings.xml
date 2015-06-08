@@ -21,5 +21,8 @@
     <string name="wantplaygame">Want play game?</string>
     <string name="title_activity_board">BoardActivity</string>
     <string name="title_activity_end_game">EndGameActivity</string>
+    <string name="end_game">You won!</string>
+    <string name="time">your time was:</string>
+    <string name="btn_exit">Exit</string>
 
 </resources>
