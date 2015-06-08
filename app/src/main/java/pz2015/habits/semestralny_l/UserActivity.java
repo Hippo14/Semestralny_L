@@ -1,17 +1,61 @@
 package pz2015.habits.semestralny_l;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 public class UserActivity extends Activity {
 
+    private TextView txtName;
+    private SessionManager sessionManager;
+    private Button btnLogout;
+    private Button btnEasyGame;
+    private Button btnMediumGame;
+    private Button btnHardGame;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_user);
+
+        txtName = (TextView) findViewById(R.id.name);
+
+        btnEasyGame = (Button) findViewById(R.id.btnEasyGame);
+        btnMediumGame = (Button) findViewById(R.id.btnMediumGame);
+        btnHardGame = (Button) findViewById(R.id.btnHardGame);
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+        sessionManager = new SessionManager(getApplicationContext());
+
+        if (!sessionManager.getIsLoggedIn())
+            logoutUser();
+
+        String name = sessionManager.getName();
+
+        txtName.setText(name);
+
+        btnLogout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
+    }
+
+    private void logoutUser() {
+        sessionManager.setLogin(false);
+
+        Intent intent = new Intent(UserActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

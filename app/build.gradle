@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "pz2015.habits.semestralny_l"
-        minSdkVersion 21
+        minSdkVersion 16
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"

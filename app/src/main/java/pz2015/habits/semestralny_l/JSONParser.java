@@ -108,7 +108,7 @@ public class JSONParser {
 
     }
 
-    private void setError(String errorMsg) {
+    public void setError(String errorMsg) {
         this.error = true;
         this.errorMsg = errorMsg;
     }

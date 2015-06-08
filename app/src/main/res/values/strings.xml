@@ -5,8 +5,8 @@
     <string name="hint_name">Fullname</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
-    <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="btn_link_to_register">Sign up now.</string>
+    <string name="btn_link_to_login">Login Me.</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
@@ -15,5 +15,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_user">UserActivity</string>
+    <string name="btn_easy_game">Easy Game</string>
+    <string name="btn_medium_game">Medium Game</string>
+    <string name="btn_hard_game">Hard Game</string>
+    <string name="wantplaygame">Want play game?</string>
 
 </resources>

@@ -26,6 +26,8 @@ public class SessionManager {
     private static final String PREF_NAME = "JavaSemestralnyLogin";
 
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
+    private static final String KEY_IS_SALT = "salt";
+    private static final String KEY_IS_NAME = "name";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -42,8 +44,22 @@ public class SessionManager {
         Log.d(TAG, "User login session modified!");
     }
 
+    public void setLogin(boolean isLoggedIn, String salt, String name) {
+        this.editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
+        this.editor.putString(KEY_IS_SALT, salt);
+        this.editor.putString(KEY_IS_NAME, name);
+
+        // commit changes
+        editor.commit();
+
+        Log.d(TAG, "User login session modified!");
+    }
+
     public boolean getIsLoggedIn() {
         return this.sharedPreferences.getBoolean(KEY_IS_LOGGEDIN, false);
     }
 
+    public String getName() {
+        return this.sharedPreferences.getString(KEY_IS_NAME, null);
+    }
 }

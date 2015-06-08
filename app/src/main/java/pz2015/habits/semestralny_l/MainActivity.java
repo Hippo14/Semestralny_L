@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,12 +28,13 @@ public class MainActivity extends Activity {
     private EditText editPassword;
     private SessionManager sessionManager;
 
-    private final String TAG_LOGIN = "login";
+    private static final String TAG_LOGIN = "login";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         editEmail = (EditText) findViewById(R.id.email);
