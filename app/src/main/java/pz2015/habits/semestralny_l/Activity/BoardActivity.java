@@ -37,8 +37,8 @@ public class BoardActivity extends Activity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_board);
 
-        NUM_ROWS = sessionManager.getLevel();
-        NUM_COLS = sessionManager.getLevel();
+        NUM_ROWS = sessionManager.getLevelI();
+        NUM_COLS = sessionManager.getLevelI();
 
         myButtons = new myButton[NUM_ROWS][NUM_COLS];
 
@@ -46,7 +46,7 @@ public class BoardActivity extends Activity {
         populatemyButtons();
 
         // randomize colors :)
-        //randomize();
+        randomize();
 
         startTime = System.currentTimeMillis();
     }

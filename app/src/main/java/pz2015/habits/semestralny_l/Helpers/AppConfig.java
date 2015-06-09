@@ -7,8 +7,22 @@ public class AppConfig {
     // Server user API URL
     public static String URL_API = "http://krzysiek.carimex.pl/android.php";
 
-    // Level config
-    public static int LEVEL_EASY = 4;
-    public static int LEVEL_MEDIUM = 5;
-    public static int LEVEL_HARD = 6;
+    public enum Levels {
+        LEVEL_EASY("Easy", 4),
+        LEVEL_MEDIUM("Medim", 5),
+        LEVEL_HARD("Hard", 6);
+
+        private final String level;
+        private final int i;
+
+        Levels(String level, int i) {
+            this.level = level;
+            this.i = i;
+        }
+
+        public String getLevel() { return this.level;}
+
+        public int getI() { return this.i; }
+    }
+
 }

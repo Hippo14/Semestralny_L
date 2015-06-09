@@ -27,7 +27,8 @@ public class SessionManager {
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_IS_SALT = "salt";
     private static final String KEY_IS_NAME = "name";
-    private static final String KEY_IS_LEVEL = "level";
+    private static final String KEY_IS_LEVEL_NAME = "level_name";
+    private static final String KEY_IS_LEVEL_I = "level_size";
     private static final String KEY_IS_TIME = "time";
 
     public SessionManager(Context context) {
@@ -64,12 +65,14 @@ public class SessionManager {
         return this.sharedPreferences.getString(KEY_IS_NAME, null);
     }
 
-    public int getLevel() { return this.sharedPreferences.getInt(KEY_IS_LEVEL, 4); }
+    public int getLevelI() { return this.sharedPreferences.getInt(KEY_IS_LEVEL_I, 4); }
+    public String getLevelName() { return this.sharedPreferences.getString(KEY_IS_LEVEL_NAME, null); }
 
     public long getTime() { return this.sharedPreferences.getLong(KEY_IS_TIME, 0); }
 
-    public void setLevel(int level) {
-        this.editor.putInt(KEY_IS_LEVEL, level);
+    public void setLevel(AppConfig.Levels level) {
+        this.editor.putInt(KEY_IS_LEVEL_I, level.getI());
+        this.editor.putString(KEY_IS_LEVEL_NAME, level.getLevel());
 
         // commint changes
         editor.commit();

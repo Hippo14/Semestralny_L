@@ -18,7 +18,10 @@ public class EndGameActivity extends Activity {
 
     private long time;
     private TextView txtTime;
+    private TextView txtDifficult;
     private Button btnExit;
+
+    private static String difficult;
 
     private SessionManager sessionManager;
 
@@ -29,13 +32,16 @@ public class EndGameActivity extends Activity {
         setContentView(R.layout.activity_end_game);
 
         sessionManager = new SessionManager(getApplicationContext());
+        difficult = sessionManager.getLevelName();
 
         time = sessionManager.getTime() / 1000;
 
         txtTime = (TextView) findViewById(R.id.time);
+        txtDifficult = (TextView) findViewById(R.id.difficult);
         btnExit = (Button) findViewById(R.id.btnExit);
 
         txtTime.setText(Long.toString(time) + " sec");
+        txtDifficult.setText("On level " + difficult);
 
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -48,21 +48,21 @@ public class UserActivity extends Activity {
         btnEasyGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame(AppConfig.LEVEL_EASY);
+                startGame(AppConfig.Levels.LEVEL_EASY);
             }
         });
 
         btnMediumGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame(AppConfig.LEVEL_MEDIUM);
+                startGame(AppConfig.Levels.LEVEL_MEDIUM);
             }
         });
 
         btnHardGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame(AppConfig.LEVEL_HARD);
+                startGame(AppConfig.Levels.LEVEL_HARD);
             }
         });
 
@@ -74,7 +74,7 @@ public class UserActivity extends Activity {
         });
     }
 
-    private void startGame(int level) {
+    private void startGame(AppConfig.Levels level) {
         sessionManager.setLevel(level);
         Intent intent = new Intent(UserActivity.this, BoardActivity.class);
         startActivity(intent);

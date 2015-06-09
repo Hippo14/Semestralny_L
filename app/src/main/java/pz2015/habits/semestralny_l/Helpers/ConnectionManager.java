@@ -77,21 +77,14 @@ public class ConnectionManager extends AsyncTask<Void, Void, Void> {
                 salt = json.getString("salt");
                 name = json.getString("name");
             } catch (JSONException e) {
-                jParser.setError("Salt is null!");
+
             }
-            if (!error) {
-                // Create login session
-                sessionManager.setLogin(true, salt, name);
-                // Launch User Activity
-                Intent intent = new Intent(context, UserActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-            else {
-                // error in login. Get the error message
-                String errorMsg = jParser.getErrorMsg();
-                Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show();
-            }
+            // Create login session
+            sessionManager.setLogin(true, salt, name);
+            // Launch User Activity
+            Intent intent = new Intent(context, UserActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
         else {
             // error in login. Get the error message
