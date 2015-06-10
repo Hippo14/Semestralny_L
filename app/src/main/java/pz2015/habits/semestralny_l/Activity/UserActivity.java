@@ -1,6 +1,5 @@
 package pz2015.habits.semestralny_l.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,27 +14,23 @@ import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
-public class UserActivity extends Activity {
+public class UserActivity extends MY_Activity {
 
     private TextView txtName;
-    private SessionManager sessionManager;
     private Button btnLogout;
-    private Button btnEasyGame;
-    private Button btnMediumGame;
-    private Button btnHardGame;
+    private Button btnPlayGame;
+    private Button btnStatistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_user);
 
         txtName = (TextView) findViewById(R.id.name);
 
-        btnEasyGame = (Button) findViewById(R.id.btnEasyGame);
-        btnMediumGame = (Button) findViewById(R.id.btnMediumGame);
-        btnHardGame = (Button) findViewById(R.id.btnHardGame);
+        btnPlayGame = (Button) findViewById(R.id.btnPlayGame);
+        btnStatistics = (Button) findViewById(R.id.btnStatistics);
         btnLogout = (Button) findViewById(R.id.btnLogout);
+
         sessionManager = new SessionManager(getApplicationContext());
 
         if (!sessionManager.getIsLoggedIn())
@@ -45,24 +40,17 @@ public class UserActivity extends Activity {
 
         txtName.setText(name);
 
-        btnEasyGame.setOnClickListener(new View.OnClickListener() {
+        btnPlayGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame(AppConfig.Levels.LEVEL_EASY);
+                startGame();
             }
         });
 
-        btnMediumGame.setOnClickListener(new View.OnClickListener() {
+        btnStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startGame(AppConfig.Levels.LEVEL_MEDIUM);
-            }
-        });
-
-        btnHardGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startGame(AppConfig.Levels.LEVEL_HARD);
+                statistics();
             }
         });
 
@@ -74,9 +62,14 @@ public class UserActivity extends Activity {
         });
     }
 
-    private void startGame(AppConfig.Levels level) {
-        sessionManager.setLevel(level);
-        Intent intent = new Intent(UserActivity.this, BoardActivity.class);
+    private void statistics() {
+//        Intent intent = new Intent(UserActivity.this, Statistics.class);
+//        startActivity(intent);
+//        finish();
+    }
+
+    private void startGame() {
+        Intent intent = new Intent(UserActivity.this, PlayGameActivity.class);
         startActivity(intent);
         finish();
     }
@@ -111,4 +104,10 @@ public class UserActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_user;
+    }
+
 }

@@ -1,6 +1,5 @@
 package pz2015.habits.semestralny_l.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,26 +13,18 @@ import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
-public class EndGameActivity extends Activity {
+public class EndGameActivity extends MY_Activity {
 
     private long time;
     private TextView txtTime;
     private TextView txtDifficult;
     private Button btnExit;
 
-    private static String difficult;
-
-    private SessionManager sessionManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_end_game);
 
         sessionManager = new SessionManager(getApplicationContext());
-        difficult = sessionManager.getLevelName();
-
         time = sessionManager.getTime() / 1000;
 
         txtTime = (TextView) findViewById(R.id.time);
@@ -41,7 +32,7 @@ public class EndGameActivity extends Activity {
         btnExit = (Button) findViewById(R.id.btnExit);
 
         txtTime.setText(Long.toString(time) + " sec");
-        txtDifficult.setText("On level " + difficult);
+        //txtDifficult.setText("On level " + difficult);
 
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,4 +66,10 @@ public class EndGameActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_end_game;
+    }
+
 }

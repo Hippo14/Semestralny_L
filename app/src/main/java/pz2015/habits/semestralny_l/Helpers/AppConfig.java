@@ -7,10 +7,30 @@ public class AppConfig {
     // Server user API URL
     public static String URL_API = "http://krzysiek.carimex.pl/android.php";
 
+    /**
+    * Created by ASUS on 2015-06-10.
+    */
+    public enum TypeOfGame {
+        TestYourMight(0),
+        CustomGame(1);
+
+        private final int i;
+
+        private TypeOfGame(int i) {
+            this.i = i;
+        }
+
+        public int getI() { return this.i; }
+    }
+
+    /**
+    * Created by ASUS on 2015-06-10.
+    */
     public enum Levels {
-        LEVEL_EASY("Easy", 4),
-        LEVEL_MEDIUM("Medim", 5),
-        LEVEL_HARD("Hard", 6);
+        LEVEL_EASY("Easy", 28),
+        LEVEL_MEDIUM("Medium", 30),
+        LEVEL_HARD("Hard", 32),
+        LEVEL_MAX("Max level", 26);
 
         private final String level;
         private final int i;
@@ -24,5 +44,4 @@ public class AppConfig {
 
         public int getI() { return this.i; }
     }
-
 }

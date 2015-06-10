@@ -1,6 +1,5 @@
 package pz2015.habits.semestralny_l.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,21 +21,19 @@ import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
-public class RegisterActivity extends Activity {
+public class RegisterActivity extends MY_Activity {
 
-    private static final String TAG_REGISTER = "register";
     private EditText editFullName;
     private EditText editEmail;
     private EditText editPassword;
     private Button btnRegister;
     private Button btnLogin;
-    private SessionManager sessionManager;
+
+    private static final String TAG_REGISTER = "register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_register);
         
         editFullName = (EditText) findViewById(R.id.name);
         editEmail = (EditText) findViewById(R.id.email);
@@ -116,4 +113,10 @@ public class RegisterActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_register;
+    }
+
 }

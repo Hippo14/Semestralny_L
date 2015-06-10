@@ -15,14 +15,19 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_user">UserActivity</string>
-    <string name="btn_easy_game">Easy Game</string>
-    <string name="btn_medium_game">Medium Game</string>
-    <string name="btn_hard_game">Hard Game</string>
+    <string name="btn_play_game">Play Game!</string>
+    <string name="btn_statistics">Statistics</string>
     <string name="wantplaygame">Want play game?</string>
     <string name="title_activity_board">BoardActivity</string>
     <string name="title_activity_end_game">EndGameActivity</string>
     <string name="end_game">You won!</string>
     <string name="time">your time was:</string>
     <string name="btn_exit">Exit</string>
+    <string name="title_activity_play_game">PlayGameActivity</string>
+    <string name="choose_your_destiny">Choose your destiny</string>
+    <string name="btn_test_your_might">Tower Challenge</string>
+    <string name="btn_custom">Custom Game</string>
+    <string name="set_size">Set board size, for example - 5 for 5x5</string>
+    <string name="btn_custom_play">PLAY!</string>
 
 </resources>

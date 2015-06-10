@@ -1,23 +1,22 @@
 package pz2015.habits.semestralny_l.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import java.util.Random;
 
+import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 import pz2015.habits.semestralny_l.Helpers.myButton;
 
 
-public class BoardActivity extends Activity {
+public class BoardActivity extends MY_Activity {
 
     private static int NUM_ROWS;
     private static int NUM_COLS;
@@ -26,18 +25,19 @@ public class BoardActivity extends Activity {
 
     private SessionManager sessionManager;
 
-    int test[][] = new int[10][2];
+    private int typeOfGame;
 
-    long startTime;
-    long difference;
+    private long startTime;
+    private long difference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sessionManager = new SessionManager(getApplicationContext());
+        typeOfGame = sessionManager.getTypeOfGame();
 
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_board);
+
+        setBoardSize();
 
         NUM_ROWS = sessionManager.getLevelI();
         NUM_COLS = sessionManager.getLevelI();
@@ -51,6 +51,18 @@ public class BoardActivity extends Activity {
         randomize();
 
         startTime = System.currentTimeMillis();
+    }
+
+    private void setBoardSize() {
+        if (typeOfGame == AppConfig.TypeOfGame.TestYourMight.getI()) {
+
+        }
+        else if (typeOfGame == AppConfig.TypeOfGame.CustomGame.getI()) {
+
+        }
+        else {
+
+        }
     }
 
     private void populatemyButtons() {
@@ -71,8 +83,6 @@ public class BoardActivity extends Activity {
                 final int FINAL_ROW = row;
 
                 myButton myButton = new myButton(this);
-
-                myButton.setText(row + " , " + col);
 
                 //myButton onclick listener
                 myButton.setOnClickListener(new View.OnClickListener() {
@@ -102,25 +112,20 @@ public class BoardActivity extends Activity {
     }
 
     private void gridMyButtonClicked(int col, int row) {
-        myButton button = myButtons[row][col];
-        button.checkColor();
+        myButtons[row][col].checkColor();
 
-        if (col - 1 >= 0) {
-            myButton button1 = myButtons[row][col - 1];
-            button1.checkColor();
-        }
-        if (col + 1 < NUM_COLS) {
-            myButton button1 = myButtons[row][col + 1];
-            button1.checkColor();
-        }
-        if (row - 1 >= 0) {
-            myButton button1 = myButtons[row - 1][col];
-            button1.checkColor();
-        }
-        if (row + 1 < NUM_ROWS) {
-            myButton button1 = myButtons[row + 1][col];
-            button1.checkColor();
-        }
+        if (col - 1 >= 0)
+            myButtons[row][col - 1].checkColor();
+
+        if (col + 1 < NUM_COLS)
+            myButtons[row][col + 1].checkColor();
+
+        if (row - 1 >= 0)
+            myButtons[row - 1][col].checkColor();
+
+        if (row + 1 < NUM_ROWS)
+            myButtons[row + 1][col].checkColor();
+
     }
 
     public boolean checkAllButtons() {
@@ -139,22 +144,12 @@ public class BoardActivity extends Activity {
     }
 
     private void randomize() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < NUM_ROWS * NUM_COLS; i++) {
             int x = generateRandomWithRange(NUM_ROWS - 1, 0);
             int y = generateRandomWithRange(NUM_COLS - 1, 0);
 
-            test[i][0] = x;
-            test[i][1] = y;
-
             gridMyButtonClicked(y, x);
         }
-//        for (int i = 0; i < myButtons.length; i++) {
-//            for (int j = 0; j < myButtons[i].length; j++) {
-//                Random r = new Random();
-//                myButtons[i][j].setColor(r.nextBoolean());
-//                myButtons[i][j].checkColor();
-//            }
-//        }
     }
 
 
@@ -179,4 +174,17 @@ public class BoardActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(BoardActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_board;
+    }
+
 }

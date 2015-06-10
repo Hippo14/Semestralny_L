@@ -1,6 +1,5 @@
 package pz2015.habits.semestralny_l.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,13 +21,12 @@ import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends MY_Activity {
 
     private Button btnLogin;
     private Button btnRegister;
     private EditText editEmail;
     private EditText editPassword;
-    private SessionManager sessionManager;
 
     private static final String TAG_LOGIN = "login";
 
@@ -36,8 +34,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
 
         editEmail = (EditText) findViewById(R.id.email);
         editPassword = (EditText) findViewById(R.id.password);
@@ -115,6 +111,11 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_main;
     }
 
 }

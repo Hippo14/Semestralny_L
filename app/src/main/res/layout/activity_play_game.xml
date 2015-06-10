@@ -1,0 +1,92 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/bg_play_game">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_your_destiny"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/btnTestYourMight"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/btn_game_bg"
+            android:text="@string/btn_test_your_might"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/btnCustom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/btn_game_bg"
+            android:text="@string/btn_custom"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/customGameOptions"
+        android:visibility="invisible"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_size"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/boardSize" />
+
+        <Button
+            android:id="@+id/btnCustomPLAY"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/btn_game_bg"
+            android:text="@string/btn_custom_play"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

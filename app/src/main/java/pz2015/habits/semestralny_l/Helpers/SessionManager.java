@@ -27,9 +27,9 @@ public class SessionManager {
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_IS_SALT = "salt";
     private static final String KEY_IS_NAME = "name";
-    private static final String KEY_IS_LEVEL_NAME = "level_name";
-    private static final String KEY_IS_LEVEL_I = "level_size";
+    private static final String KEY_IS_LEVEL_I = "levelSize";
     private static final String KEY_IS_TIME = "time";
+    private static final String KEY_IS_TYPE_OF_GAME = "typeOfGame";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -66,13 +66,22 @@ public class SessionManager {
     }
 
     public int getLevelI() { return this.sharedPreferences.getInt(KEY_IS_LEVEL_I, 4); }
-    public String getLevelName() { return this.sharedPreferences.getString(KEY_IS_LEVEL_NAME, null); }
 
     public long getTime() { return this.sharedPreferences.getLong(KEY_IS_TIME, 0); }
 
-    public void setLevel(AppConfig.Levels level) {
-        this.editor.putInt(KEY_IS_LEVEL_I, level.getI());
-        this.editor.putString(KEY_IS_LEVEL_NAME, level.getLevel());
+    public int getTypeOfGame() { return this.sharedPreferences.getInt(KEY_IS_TYPE_OF_GAME, 0); }
+
+    public void setTypeOfGame(int typeOfGame) {
+        this.editor.putInt(KEY_IS_TYPE_OF_GAME, typeOfGame);
+
+        // commint changes
+        editor.commit();
+
+        Log.d(TAG, "Type of Game session modified!");
+    }
+
+    public void setLevel(int level) {
+        this.editor.putInt(KEY_IS_LEVEL_I, level);
 
         // commint changes
         editor.commit();
@@ -88,4 +97,5 @@ public class SessionManager {
 
         Log.d(TAG, "Time session modified!");
     }
+
 }
