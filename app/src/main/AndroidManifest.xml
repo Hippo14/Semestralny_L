@@ -38,6 +38,10 @@
             android:name=".Activity.PlayGameActivity"
             android:label="@string/title_activity_play_game" >
         </activity>
+        <activity
+            android:name=".Activity.StatisticsActivity"
+            android:label="@string/title_activity_statistics" >
+        </activity>
     </application>
 
 </manifest>

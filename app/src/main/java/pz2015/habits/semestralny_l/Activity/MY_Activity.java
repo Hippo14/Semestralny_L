@@ -19,12 +19,13 @@ public abstract class MY_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        this.sessionManager = new SessionManager(getContext());
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         setContentView(getLayoutResourceId());
 
-        sessionManager = new SessionManager(getContext());
+
     }
 
     protected abstract int getLayoutResourceId();

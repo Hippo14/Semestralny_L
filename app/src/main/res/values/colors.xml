@@ -38,12 +38,19 @@
     <color name="btn_exit_bg">#ffffffff</color>
     <color name="btn_exit">#ff00f3ff</color>
 
+    <color name="btn_next_bg">#ffffffff</color>
+    <color name="btn_next">#ff00f3ff</color>
+
     <!-- Play Game Colors-->
     <color name="bg_play_game">#ffffffff</color>
+
+    <!-- Statistics Colors-->
+    <color name="bg_statistics">#ffff03a5</color>
 
 
     <color name="lbl_name">#333333</color>
     <color name="white">#ffffff</color>
+
 
 
 </resources>

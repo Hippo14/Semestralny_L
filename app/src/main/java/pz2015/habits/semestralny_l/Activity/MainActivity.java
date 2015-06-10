@@ -1,5 +1,6 @@
 package pz2015.habits.semestralny_l.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -117,5 +118,8 @@ public class MainActivity extends MY_Activity {
     protected int getLayoutResourceId() {
         return R.layout.activity_main;
     }
+
+    @Override
+    protected Context getContext() { return this.getApplicationContext(); }
 
 }

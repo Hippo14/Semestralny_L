@@ -29,5 +29,7 @@
     <string name="btn_custom">Custom Game</string>
     <string name="set_size">Set board size, for example - 5 for 5x5</string>
     <string name="btn_custom_play">PLAY!</string>
+    <string name="btn_next">Next level</string>
+    <string name="title_activity_statistics">StatisticsActivity</string>
 
 </resources>

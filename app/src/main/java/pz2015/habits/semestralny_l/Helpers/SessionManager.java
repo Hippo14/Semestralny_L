@@ -31,11 +31,35 @@ public class SessionManager {
     private static final String KEY_IS_TIME = "time";
     private static final String KEY_IS_TYPE_OF_GAME = "typeOfGame";
 
+    private static final String KEY_IS_STATISTICS_TIME = "arrayOfStatisticsTime";
+    private static final String KEY_IS_STATISTICS_LEVEL = "arrayOfStatisticsLevel";
+    private static final String KEY_IS_STATISTICS_SIZE = "arrayOfStatisticsSize";
+
     public SessionManager(Context context) {
         this.context = context;
         this.sharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         this.editor = sharedPreferences.edit();
     }
+
+
+    public boolean getIsLoggedIn() {
+        return this.sharedPreferences.getBoolean(KEY_IS_LOGGEDIN, false);
+    }
+
+    public int getTypeOfGame() { return this.sharedPreferences.getInt(KEY_IS_TYPE_OF_GAME, 4); }
+
+    public int getLevelI() { return this.sharedPreferences.getInt(KEY_IS_LEVEL_I, 4); }
+
+    public long getTime() { return this.sharedPreferences.getLong(KEY_IS_TIME, 0); }
+
+    public String getName() {
+        return this.sharedPreferences.getString(KEY_IS_NAME, null);
+    }
+
+    public int getStatisticsSize() { return this.sharedPreferences.getInt(KEY_IS_STATISTICS_SIZE, 0); }
+    public long getStatisticsTime(int i) { return this.sharedPreferences.getLong(KEY_IS_STATISTICS_TIME + "_" + i, 0); }
+    public int getStatisticsLevel(int i) { return this.sharedPreferences.getInt(KEY_IS_STATISTICS_LEVEL + "_" + i, 0); }
+
 
     public void setLogin(boolean isLoggedIn) {
         this.editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
@@ -56,20 +80,6 @@ public class SessionManager {
 
         Log.d(TAG, "User login session modified!");
     }
-
-    public boolean getIsLoggedIn() {
-        return this.sharedPreferences.getBoolean(KEY_IS_LOGGEDIN, false);
-    }
-
-    public String getName() {
-        return this.sharedPreferences.getString(KEY_IS_NAME, null);
-    }
-
-    public int getLevelI() { return this.sharedPreferences.getInt(KEY_IS_LEVEL_I, 4); }
-
-    public long getTime() { return this.sharedPreferences.getLong(KEY_IS_TIME, 0); }
-
-    public int getTypeOfGame() { return this.sharedPreferences.getInt(KEY_IS_TYPE_OF_GAME, 0); }
 
     public void setTypeOfGame(int typeOfGame) {
         this.editor.putInt(KEY_IS_TYPE_OF_GAME, typeOfGame);
@@ -96,6 +106,24 @@ public class SessionManager {
         editor.commit();
 
         Log.d(TAG, "Time session modified!");
+    }
+
+    public void setStatistics(long time, int sizeBoard) {
+        if (getStatisticsSize() == 0) {
+            this.editor.putInt(KEY_IS_STATISTICS_SIZE, 1);
+            this.editor.putLong(KEY_IS_STATISTICS_TIME + "_" + 0, time);
+            this.editor.putInt(KEY_IS_STATISTICS_LEVEL + "_" + 0, sizeBoard);
+        }
+        else {
+            this.editor.putInt(KEY_IS_STATISTICS_SIZE, getStatisticsSize() + 1);
+            this.editor.putLong(KEY_IS_STATISTICS_TIME + "_" + getStatisticsSize(), time);
+            this.editor.putInt(KEY_IS_STATISTICS_LEVEL + "_" + getStatisticsSize(), sizeBoard);
+        }
+
+        // commint changes
+        editor.commit();
+
+        Log.d(TAG, "Statistics session modified!");
     }
 
 }

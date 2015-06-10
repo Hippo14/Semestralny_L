@@ -1,5 +1,6 @@
 package pz2015.habits.semestralny_l.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,13 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.util.Random;
 
-import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.R;
-import pz2015.habits.semestralny_l.Helpers.SessionManager;
-import pz2015.habits.semestralny_l.Helpers.myButton;
+import pz2015.habits.semestralny_l.Helpers.MY_Button;
 
 
 public class BoardActivity extends MY_Activity {
@@ -21,28 +21,28 @@ public class BoardActivity extends MY_Activity {
     private static int NUM_ROWS;
     private static int NUM_COLS;
 
-    myButton myButtons[][];
-
-    private SessionManager sessionManager;
+    MY_Button myButtons[][];
 
     private int typeOfGame;
 
     private long startTime;
     private long difference;
 
+    private TextView txtBoardSize;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sessionManager = new SessionManager(getApplicationContext());
-        typeOfGame = sessionManager.getTypeOfGame();
-
         super.onCreate(savedInstanceState);
 
-        setBoardSize();
-
+        typeOfGame = sessionManager.getTypeOfGame();
         NUM_ROWS = sessionManager.getLevelI();
         NUM_COLS = sessionManager.getLevelI();
 
-        myButtons = new myButton[NUM_ROWS][NUM_COLS];
+        txtBoardSize = (TextView) findViewById(R.id.boardSizeText);
+        txtBoardSize.setText(NUM_ROWS + "x" + NUM_COLS);
+
+
+        myButtons = new MY_Button[NUM_ROWS][NUM_COLS];
 
         // populate my buttons
         populatemyButtons();
@@ -51,18 +51,6 @@ public class BoardActivity extends MY_Activity {
         randomize();
 
         startTime = System.currentTimeMillis();
-    }
-
-    private void setBoardSize() {
-        if (typeOfGame == AppConfig.TypeOfGame.TestYourMight.getI()) {
-
-        }
-        else if (typeOfGame == AppConfig.TypeOfGame.CustomGame.getI()) {
-
-        }
-        else {
-
-        }
     }
 
     private void populatemyButtons() {
@@ -82,7 +70,7 @@ public class BoardActivity extends MY_Activity {
                 final int FINAL_COL = col;
                 final int FINAL_ROW = row;
 
-                myButton myButton = new myButton(this);
+                MY_Button myButton = new MY_Button(this);
 
                 //myButton onclick listener
                 myButton.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +165,7 @@ public class BoardActivity extends MY_Activity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(BoardActivity.this, MainActivity.class);
+        Intent intent = new Intent(BoardActivity.this, PlayGameActivity.class);
         startActivity(intent);
         finish();
     }
@@ -186,5 +174,8 @@ public class BoardActivity extends MY_Activity {
     protected int getLayoutResourceId() {
         return R.layout.activity_board;
     }
+
+    @Override
+    protected Context getContext() { return this.getApplicationContext(); }
 
 }

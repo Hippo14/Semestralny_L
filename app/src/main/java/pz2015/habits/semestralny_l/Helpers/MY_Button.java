@@ -10,11 +10,11 @@ import pz2015.habits.semestralny_l.R;
 /**
  * Created by ASUS on 2015-06-08.
  */
-public class myButton extends Button {
+public class MY_Button extends Button {
 
     private boolean whichColorIs = true;
 
-    public myButton(Context context) {
+    public MY_Button(Context context) {
         super(context);
 
         //set myButton layout

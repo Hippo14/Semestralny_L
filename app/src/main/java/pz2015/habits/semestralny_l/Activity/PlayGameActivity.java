@@ -1,5 +1,6 @@
 package pz2015.habits.semestralny_l.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,7 +23,6 @@ public class PlayGameActivity extends MY_Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sessionManager = new SessionManager(getApplicationContext());
         super.onCreate(savedInstanceState);
 
         btnTestYourMight = (Button) findViewById(R.id.btnTestYourMight);
@@ -75,7 +75,7 @@ public class PlayGameActivity extends MY_Activity {
                 final EditText editBoardSize = (EditText) findViewById(R.id.boardSize);
 
                 sessionManager.setTypeOfGame(AppConfig.TypeOfGame.CustomGame.getI());
-                sessionManager.setLevel(Integer.parseInt(editBoardSize.getText().toString()));
+                sessionManager.setLevel(Integer.parseInt(editBoardSize.getText().toString()) >= 3 ? Integer.parseInt(editBoardSize.getText().toString()) : 3);
 
                 startActivity(intent);
                 finish();
@@ -107,8 +107,18 @@ public class PlayGameActivity extends MY_Activity {
     }
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(PlayGameActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     protected int getLayoutResourceId() {
         return R.layout.activity_play_game;
     }
+
+    @Override
+    protected Context getContext() { return this.getApplicationContext(); }
 
 }

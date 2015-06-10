@@ -1,5 +1,6 @@
 package pz2015.habits.semestralny_l.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,8 +32,6 @@ public class UserActivity extends MY_Activity {
         btnStatistics = (Button) findViewById(R.id.btnStatistics);
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
-        sessionManager = new SessionManager(getApplicationContext());
-
         if (!sessionManager.getIsLoggedIn())
             logoutUser();
 
@@ -63,9 +62,9 @@ public class UserActivity extends MY_Activity {
     }
 
     private void statistics() {
-//        Intent intent = new Intent(UserActivity.this, Statistics.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent = new Intent(UserActivity.this, StatisticsActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void startGame() {
@@ -109,5 +108,8 @@ public class UserActivity extends MY_Activity {
     protected int getLayoutResourceId() {
         return R.layout.activity_user;
     }
+
+    @Override
+    protected Context getContext() { return this.getApplicationContext(); }
 
 }

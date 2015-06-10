@@ -1,5 +1,6 @@
 package pz2015.habits.semestralny_l.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
@@ -16,23 +18,43 @@ import pz2015.habits.semestralny_l.Helpers.SessionManager;
 public class EndGameActivity extends MY_Activity {
 
     private long time;
+    private int sizeBoard;
+
     private TextView txtTime;
-    private TextView txtDifficult;
+    private TextView txtBoardSize;
     private Button btnExit;
+    private Button btnNextLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sessionManager = new SessionManager(getApplicationContext());
         time = sessionManager.getTime() / 1000;
+        sizeBoard = sessionManager.getLevelI();
 
         txtTime = (TextView) findViewById(R.id.time);
-        txtDifficult = (TextView) findViewById(R.id.difficult);
+        txtBoardSize = (TextView) findViewById(R.id.boardSizeText);
+        btnNextLevel = (Button) findViewById(R.id.btnNextLevel);
         btnExit = (Button) findViewById(R.id.btnExit);
 
+
         txtTime.setText(Long.toString(time) + " sec");
-        //txtDifficult.setText("On level " + difficult);
+        txtBoardSize.setText("On " + Integer.toString(sizeBoard) + "x" + Integer.toString(sizeBoard));
+
+        if (sessionManager.getTypeOfGame() == AppConfig.TypeOfGame.TestYourMight.getI())
+            btnNextLevel.setVisibility(View.VISIBLE);
+
+        btnNextLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EndGameActivity.this, BoardActivity.class);
+
+                sessionManager.setLevel(sessionManager.getLevelI() + 1);
+
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +90,26 @@ public class EndGameActivity extends MY_Activity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (isFinishing())
+            sessionManager.setStatistics(time, sizeBoard);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EndGameActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     protected int getLayoutResourceId() {
         return R.layout.activity_end_game;
     }
+
+    @Override
+    protected Context getContext() { return this.getApplicationContext(); }
 
 }
