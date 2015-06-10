@@ -1,6 +1,5 @@
 package pz2015.habits.semestralny_l.Activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,24 +13,41 @@ import pz2015.habits.semestralny_l.R;
 
 public class StatisticsActivity extends MY_Activity {
 
-    TextView txtStatistics;
+    TextView txtAverageTime;
+    TextView txtAverageBoardSize;
+    TextView txtAverageMovements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
 
-        txtStatistics = (TextView) findViewById(R.id.txtStatistics);
+        int arraySize = sessionManager.getStatisticsSize();
 
-        long array1[] = new long[sessionManager.getStatisticsSize()];
-        int array2[] = new int[sessionManager.getStatisticsSize()];
+        txtAverageTime = (TextView) findViewById(R.id.average_time);
+        txtAverageBoardSize = (TextView) findViewById(R.id.average_board_size);
+        txtAverageMovements = (TextView) findViewById(R.id.average_movements);
 
-        for (int i = 0; i < sessionManager.getStatisticsSize(); i++) {
+        long array1[] = new long[arraySize];
+        int array2[] = new int[arraySize];
+
+        for (int i = 0; i < arraySize; i++) {
             array1[i] = sessionManager.getStatisticsTime(i);
             array2[i] = sessionManager.getStatisticsLevel(i);
         }
 
-        txtStatistics.setText(Arrays.toString(array1) + " " + Arrays.toString(array2));
+        long averageTime = 0;
+        int averageBoardSize = 0;
+        int averageMovements = sessionManager.getMovements();
+
+        for (int i = 0; i < arraySize; i ++) {
+            averageTime += array1[i];
+            averageBoardSize += array2[i];
+        }
+
+        txtAverageTime.setText( averageTime == 0 ? "0" : String.valueOf((double)(averageTime / (arraySize * 1000)))  );
+        txtAverageBoardSize.setText( averageBoardSize == 0 ? "0" : String.valueOf(averageBoardSize / arraySize) + "x" + String.valueOf(averageBoardSize / arraySize) );
+        txtAverageMovements.setText(String.valueOf( averageMovements == 0 ? "0" : averageMovements / arraySize) );
     }
 
 

@@ -28,6 +28,8 @@ public class BoardActivity extends MY_Activity {
     private long startTime;
     private long difference;
 
+    private int numberOfMovements = 0;
+
     private TextView txtBoardSize;
 
     @Override
@@ -77,6 +79,7 @@ public class BoardActivity extends MY_Activity {
                     @Override
                     public void onClick(View v) {
                         gridMyButtonClicked(FINAL_COL, FINAL_ROW);
+                        numberOfMovements++;
                         //WIN
                         if (checkAllButtons()) {
                             endGame();
@@ -93,6 +96,7 @@ public class BoardActivity extends MY_Activity {
         difference = System.currentTimeMillis() - startTime;
 
         sessionManager.setTime(difference);
+        sessionManager.setMovements(numberOfMovements);
 
         Intent intent = new Intent(BoardActivity.this, EndGameActivity.class);
         startActivity(intent);

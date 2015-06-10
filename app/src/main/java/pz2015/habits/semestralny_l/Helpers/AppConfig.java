@@ -23,25 +23,4 @@ public class AppConfig {
         public int getI() { return this.i; }
     }
 
-    /**
-    * Created by ASUS on 2015-06-10.
-    */
-    public enum Levels {
-        LEVEL_EASY("Easy", 28),
-        LEVEL_MEDIUM("Medium", 30),
-        LEVEL_HARD("Hard", 32),
-        LEVEL_MAX("Max level", 26);
-
-        private final String level;
-        private final int i;
-
-        Levels(String level, int i) {
-            this.level = level;
-            this.i = i;
-        }
-
-        public String getLevel() { return this.level;}
-
-        public int getI() { return this.i; }
-    }
 }

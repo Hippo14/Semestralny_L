@@ -57,17 +57,9 @@ public class JSONParser {
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
-
-        } catch (UnsupportedEncodingException e) {
-            setError("Unsupported Encoding Exception!");
-        } catch (ClientProtocolException e) {
-            setError("Client Protocol Exception!");
-        } catch (ConnectException e) {
-            setError("Connection problems!");
-        } catch (IOException e) {
-            setError("Something went wrong!");
         } catch (Exception e) {
             setError("Something went wrong!");
+            return null;
         }
 
         try {
@@ -83,6 +75,7 @@ public class JSONParser {
         } catch (Exception e) {
             Log.d(TAG, "Error converting result " + e.toString());
             setError("Error converting result!");
+            return null;
         }
 
         // try parse the string to a JSON object
@@ -91,6 +84,7 @@ public class JSONParser {
         } catch (JSONException e) {
             Log.d(TAG, "Error parsing data " + e.toString());
             setError("Error parsing data!");
+            return null;
         }
 
         // check for errors from server
@@ -99,6 +93,7 @@ public class JSONParser {
                 setError(this.jObj.getString("errorMsg"));
         } catch (JSONException e) {
             setError("JSON Exception!");
+            return null;
         }
 
 

@@ -54,8 +54,11 @@ public class ConnectionManager extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
-
-        json = jParser.getJSONFromUrl(AppConfig.URL_API, list);
+        ConnectionDetector cd = new ConnectionDetector(context);
+        if (cd.isConnectingToInternet())
+            json = jParser.getJSONFromUrl(AppConfig.URL_API, list);
+        else
+            jParser.setError("No internet connection!");
 
         return null;
     }

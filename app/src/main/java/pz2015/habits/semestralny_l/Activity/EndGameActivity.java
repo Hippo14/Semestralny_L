@@ -29,7 +29,8 @@ public class EndGameActivity extends MY_Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        time = sessionManager.getTime() / 1000;
+        time = sessionManager.getTime();
+        double dTime = (double) time / 1000;
         sizeBoard = sessionManager.getLevelI();
 
         txtTime = (TextView) findViewById(R.id.time);
@@ -38,7 +39,7 @@ public class EndGameActivity extends MY_Activity {
         btnExit = (Button) findViewById(R.id.btnExit);
 
 
-        txtTime.setText(Long.toString(time) + " sec");
+        txtTime.setText(String.valueOf(dTime) + " sec");
         txtBoardSize.setText("On " + Integer.toString(sizeBoard) + "x" + Integer.toString(sizeBoard));
 
         if (sessionManager.getTypeOfGame() == AppConfig.TypeOfGame.TestYourMight.getI())

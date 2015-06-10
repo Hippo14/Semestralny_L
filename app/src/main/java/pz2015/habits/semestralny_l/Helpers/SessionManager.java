@@ -30,6 +30,7 @@ public class SessionManager {
     private static final String KEY_IS_LEVEL_I = "levelSize";
     private static final String KEY_IS_TIME = "time";
     private static final String KEY_IS_TYPE_OF_GAME = "typeOfGame";
+    private static final String KEY_IS_MOVEMENTS = "numberOfMovements";
 
     private static final String KEY_IS_STATISTICS_TIME = "arrayOfStatisticsTime";
     private static final String KEY_IS_STATISTICS_LEVEL = "arrayOfStatisticsLevel";
@@ -59,6 +60,8 @@ public class SessionManager {
     public int getStatisticsSize() { return this.sharedPreferences.getInt(KEY_IS_STATISTICS_SIZE, 0); }
     public long getStatisticsTime(int i) { return this.sharedPreferences.getLong(KEY_IS_STATISTICS_TIME + "_" + i, 0); }
     public int getStatisticsLevel(int i) { return this.sharedPreferences.getInt(KEY_IS_STATISTICS_LEVEL + "_" + i, 0); }
+
+    public int getMovements() { return this.sharedPreferences.getInt(KEY_IS_MOVEMENTS, 0); }
 
 
     public void setLogin(boolean isLoggedIn) {
@@ -126,4 +129,12 @@ public class SessionManager {
         Log.d(TAG, "Statistics session modified!");
     }
 
+    public void setMovements(int movements) {
+        this.editor.putLong(KEY_IS_MOVEMENTS, movements);
+
+        // commint changes
+        editor.commit();
+
+        Log.d(TAG, "Movements session modified!");
+    }
 }
