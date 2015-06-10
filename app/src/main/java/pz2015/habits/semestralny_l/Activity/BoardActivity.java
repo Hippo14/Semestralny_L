@@ -26,6 +26,8 @@ public class BoardActivity extends Activity {
 
     private SessionManager sessionManager;
 
+    int test[][] = new int[10][2];
+
     long startTime;
     long difference;
 
@@ -70,17 +72,13 @@ public class BoardActivity extends Activity {
 
                 myButton myButton = new myButton(this);
 
-                //myButton setText
-                myButton.setText("" + row + "," + col);
-                //padding text
-                myButton.setPadding(0, 0, 0 ,0);
-                //myButton setBackground
-                myButton.setBackgroundDrawable(getResources().getDrawable(R.drawable.greenbutton));
+                myButton.setText(row + " , " + col);
+
                 //myButton onclick listener
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        gridMyButtonClicked(FINAL_COL, FINAL_ROW, myButtons);
+                        gridMyButtonClicked(FINAL_COL, FINAL_ROW);
                         //WIN
                         if (checkAllButtons()) {
                             endGame();
@@ -103,86 +101,26 @@ public class BoardActivity extends Activity {
         finish();
     }
 
-    private void gridMyButtonClicked(int col, int row, myButton[][] array) {
-        myButton button = array[row][col];
+    private void gridMyButtonClicked(int col, int row) {
+        myButton button = myButtons[row][col];
         button.checkColor();
 
-        if (col == 0 && row == 0) {
-            myButton myButton0 = array[row + 1][col];
-            myButton myButton1 = array[row][col + 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
+        if (col - 1 >= 0) {
+            myButton button1 = myButtons[row][col - 1];
+            button1.checkColor();
         }
-        else if (col == NUM_COLS - 1 && row == 0) {
-            myButton myButton0 = array[row + 1][col];
-            myButton myButton1 = array[row][col - 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
+        if (col + 1 < NUM_COLS) {
+            myButton button1 = myButtons[row][col + 1];
+            button1.checkColor();
         }
-        else if (col == 0 && row == NUM_ROWS - 1) {
-            myButton myButton0 = array[row - 1][col];
-            myButton myButton1 = array[row][col + 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
+        if (row - 1 >= 0) {
+            myButton button1 = myButtons[row - 1][col];
+            button1.checkColor();
         }
-        else  if (col == NUM_COLS - 1 && row == NUM_ROWS - 1) {
-            myButton myButton0 = array[row - 1][col];
-            myButton myButton1 = array[row][col - 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
+        if (row + 1 < NUM_ROWS) {
+            myButton button1 = myButtons[row + 1][col];
+            button1.checkColor();
         }
-        else if (col == 0 && row > 0) {
-            myButton myButton0 = array[row - 1][col];
-            myButton myButton1 = array[row][col + 1];
-            myButton myButton2 = array[row + 1][col];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
-            myButton2.checkColor();
-        }
-        else if (col > 0 && row == 0) {
-            myButton myButton0 = array[row][col - 1];
-            myButton myButton1 = array[row + 1][col];
-            myButton myButton2 = array[row][col + 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
-            myButton2.checkColor();
-        }
-        else if (col == NUM_COLS - 1 && row > 0) {
-            myButton myButton0 = array[row - 1][col];
-            myButton myButton1 = array[row][col - 1];
-            myButton myButton2 = array[row + 1][col];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
-            myButton2.checkColor();
-        }
-        else if (col > 0 && row == NUM_ROWS - 1) {
-            myButton myButton0 = array[row][col - 1];
-            myButton myButton1 = array[row - 1][col];
-            myButton myButton2 = array[row][col + 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
-            myButton2.checkColor();
-        }
-        else {
-            myButton myButton0 = array[row - 1][col];
-            myButton myButton1 = array[row + 1][col];
-            myButton myButton2 = array[row][col - 1];
-            myButton myButton3 = array[row][col + 1];
-
-            myButton0.checkColor();
-            myButton1.checkColor();
-            myButton2.checkColor();
-            myButton3.checkColor();
-        }
-
     }
 
     public boolean checkAllButtons() {
@@ -195,14 +133,28 @@ public class BoardActivity extends Activity {
         return true;
     }
 
+    private int generateRandomWithRange(int max, int min) {
+        Random r = new Random();
+        return r.nextInt(max - min) + min;
+    }
+
     private void randomize() {
-        for (int i = 0; i < myButtons.length; i++) {
-            for (int j = 0; j < myButtons[i].length; j++) {
-                Random r = new Random();
-                myButtons[i][j].setColor(r.nextBoolean());
-                myButtons[i][j].checkColor();
-            }
+        for (int i = 0; i < 5; i++) {
+            int x = generateRandomWithRange(NUM_ROWS - 1, 0);
+            int y = generateRandomWithRange(NUM_COLS - 1, 0);
+
+            test[i][0] = x;
+            test[i][1] = y;
+
+            gridMyButtonClicked(y, x);
         }
+//        for (int i = 0; i < myButtons.length; i++) {
+//            for (int j = 0; j < myButtons[i].length; j++) {
+//                Random r = new Random();
+//                myButtons[i][j].setColor(r.nextBoolean());
+//                myButtons[i][j].checkColor();
+//            }
+//        }
     }
 
 
