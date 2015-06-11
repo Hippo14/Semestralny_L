@@ -71,6 +71,7 @@ public class ConnectionManager extends AsyncTask<Void, Void, Void> {
         String salt = " ";
         String name = " ";
         String tag = " ";
+        String email = " ";
 
         // Check for error in json
         if (!error) {
@@ -87,11 +88,12 @@ public class ConnectionManager extends AsyncTask<Void, Void, Void> {
                 try {
                     salt = json.getString("salt");
                     name = json.getString("name");
+                    email = json.getString("email");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 // Create login session
-                sessionManager.setLogin(true, salt, name);
+                sessionManager.setLogin(true, salt, name, email);
                 // Launch User Activity
                 Intent intent = new Intent(context, UserActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
