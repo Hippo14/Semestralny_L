@@ -6,19 +6,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
 import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.R;
-import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
-
+/*
+Activity which shows after Board Activity
+ */
 public class EndGameActivity extends MY_Activity {
 
     private long time;
     private int sizeBoard;
+    private int movements;
 
     private TextView txtTime;
     private TextView txtBoardSize;
@@ -29,19 +30,22 @@ public class EndGameActivity extends MY_Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // get variables
         time = sessionManager.getTime();
         double dTime = (double) time / 1000;
         sizeBoard = sessionManager.getLevelI();
+        movements = sessionManager.getMovements();
 
+        // set UI
         txtTime = (TextView) findViewById(R.id.time);
         txtBoardSize = (TextView) findViewById(R.id.boardSizeText);
         btnNextLevel = (Button) findViewById(R.id.btnNextLevel);
         btnExit = (Button) findViewById(R.id.btnExit);
 
-
         txtTime.setText(String.valueOf(dTime) + " sec");
         txtBoardSize.setText("On " + Integer.toString(sizeBoard) + "x" + Integer.toString(sizeBoard));
 
+        // If we play "Tower Challenge", then we have Next level button
         if (sessionManager.getTypeOfGame() == AppConfig.TypeOfGame.TestYourMight.getI())
             btnNextLevel.setVisibility(View.VISIBLE);
 
@@ -95,7 +99,7 @@ public class EndGameActivity extends MY_Activity {
         super.onPause();
 
         if (isFinishing())
-            sessionManager.setStatistics(time, sizeBoard);
+            sessionManager.setStatistics(time, sizeBoard, movements);
     }
 
     @Override

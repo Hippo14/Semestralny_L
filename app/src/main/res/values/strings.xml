@@ -34,5 +34,6 @@
     <string name="average_time">Average time</string>
     <string name="average_board_size">Average board size</string>
     <string name="average_movements">Number of average movements</string>
+    <string name="btn_send_statistics">Send statistics</string>
 
 </resources>

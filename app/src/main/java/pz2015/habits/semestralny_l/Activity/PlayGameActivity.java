@@ -3,6 +3,7 @@ package pz2015.habits.semestralny_l.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import pz2015.habits.semestralny_l.Helpers.AppConfig;
-import pz2015.habits.semestralny_l.Helpers.SessionManager;
 import pz2015.habits.semestralny_l.R;
 
+/*
+Activity for choosing Custom Game or Challenge Tower
+ */
 public class PlayGameActivity extends MY_Activity {
 
     private Button btnTestYourMight;
@@ -25,6 +28,7 @@ public class PlayGameActivity extends MY_Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // set UI
         btnTestYourMight = (Button) findViewById(R.id.btnTestYourMight);
         btnCustomGame = (Button) findViewById(R.id.btnCustom);
 
@@ -75,7 +79,9 @@ public class PlayGameActivity extends MY_Activity {
                 final EditText editBoardSize = (EditText) findViewById(R.id.boardSize);
 
                 sessionManager.setTypeOfGame(AppConfig.TypeOfGame.CustomGame.getI());
-                sessionManager.setLevel(Integer.parseInt(editBoardSize.getText().toString()) >= 3 ? Integer.parseInt(editBoardSize.getText().toString()) : 3);
+                sessionManager.setLevel( !TextUtils.isDigitsOnly(editBoardSize.getText().toString())
+                        ? 3 : Integer.parseInt(editBoardSize.getText().toString()) >= 3
+                        ? Integer.parseInt(editBoardSize.getText().toString()) : 3 );
 
                 startActivity(intent);
                 finish();

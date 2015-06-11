@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,11 +16,13 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
+import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.Helpers.ConnectionManager;
 import pz2015.habits.semestralny_l.R;
-import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
-
+/*
+Activity for register new user.
+ */
 public class RegisterActivity extends MY_Activity {
 
     private EditText editFullName;
@@ -30,20 +31,17 @@ public class RegisterActivity extends MY_Activity {
     private Button btnRegister;
     private Button btnLogin;
 
-    private static final String TAG_REGISTER = "register";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        // set UI
         editFullName = (EditText) findViewById(R.id.name);
         editEmail = (EditText) findViewById(R.id.email);
         editPassword = (EditText) findViewById(R.id.password);
         
         btnRegister = (Button) findViewById(R.id.btnMakeMe);
         btnLogin = (Button) findViewById(R.id.btnLinkToLoginScreen);
-
-        sessionManager = new SessionManager(getApplicationContext());
 
         // Check if logged
         if (sessionManager.getIsLoggedIn()) {
@@ -83,7 +81,7 @@ public class RegisterActivity extends MY_Activity {
     private void registerUser(String name, String email, String password) {
         // Build list params
         List<NameValuePair> list = new ArrayList<>();
-        list.add(new BasicNameValuePair("tag", TAG_REGISTER));
+        list.add(new BasicNameValuePair("tag", AppConfig.TAG_REGISTER));
         list.add(new BasicNameValuePair("name", name));
         list.add(new BasicNameValuePair("email", email));
         list.add(new BasicNameValuePair("password", password));

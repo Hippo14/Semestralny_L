@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-/**
- * Created by ASUS on 2015-06-07.
+/*
+Session data manager.
  */
 public class SessionManager {
 
@@ -32,6 +32,7 @@ public class SessionManager {
     private static final String KEY_IS_TYPE_OF_GAME = "typeOfGame";
     private static final String KEY_IS_MOVEMENTS = "numberOfMovements";
 
+    private static final String KEY_IS_STATISTICS__MOVEMENTS = "arrayOfStatisticsMovements";
     private static final String KEY_IS_STATISTICS_TIME = "arrayOfStatisticsTime";
     private static final String KEY_IS_STATISTICS_LEVEL = "arrayOfStatisticsLevel";
     private static final String KEY_IS_STATISTICS_SIZE = "arrayOfStatisticsSize";
@@ -57,11 +58,14 @@ public class SessionManager {
         return this.sharedPreferences.getString(KEY_IS_NAME, null);
     }
 
+    public int getMovements() { return this.sharedPreferences.getInt(KEY_IS_MOVEMENTS, 0); }
+
+    public String getSalt() { return this.sharedPreferences.getString(KEY_IS_SALT, null); }
+
     public int getStatisticsSize() { return this.sharedPreferences.getInt(KEY_IS_STATISTICS_SIZE, 0); }
     public long getStatisticsTime(int i) { return this.sharedPreferences.getLong(KEY_IS_STATISTICS_TIME + "_" + i, 0); }
     public int getStatisticsLevel(int i) { return this.sharedPreferences.getInt(KEY_IS_STATISTICS_LEVEL + "_" + i, 0); }
-
-    public int getMovements() { return this.sharedPreferences.getInt(KEY_IS_MOVEMENTS, 0); }
+    public int getStatisticsMovements(int i) { return this.sharedPreferences.getInt(KEY_IS_STATISTICS__MOVEMENTS + "_" + i, 0); }
 
 
     public void setLogin(boolean isLoggedIn) {
@@ -111,16 +115,18 @@ public class SessionManager {
         Log.d(TAG, "Time session modified!");
     }
 
-    public void setStatistics(long time, int sizeBoard) {
+    public void setStatistics(long time, int sizeBoard, int movements) {
         if (getStatisticsSize() == 0) {
             this.editor.putInt(KEY_IS_STATISTICS_SIZE, 1);
             this.editor.putLong(KEY_IS_STATISTICS_TIME + "_" + 0, time);
             this.editor.putInt(KEY_IS_STATISTICS_LEVEL + "_" + 0, sizeBoard);
+            this.editor.putInt(KEY_IS_STATISTICS__MOVEMENTS + "_" + 0, movements);
         }
         else {
             this.editor.putInt(KEY_IS_STATISTICS_SIZE, getStatisticsSize() + 1);
             this.editor.putLong(KEY_IS_STATISTICS_TIME + "_" + getStatisticsSize(), time);
             this.editor.putInt(KEY_IS_STATISTICS_LEVEL + "_" + getStatisticsSize(), sizeBoard);
+            this.editor.putInt(KEY_IS_STATISTICS__MOVEMENTS + "_" + getStatisticsSize(), movements);
         }
 
         // commint changes
@@ -130,11 +136,12 @@ public class SessionManager {
     }
 
     public void setMovements(int movements) {
-        this.editor.putLong(KEY_IS_MOVEMENTS, movements);
+        this.editor.putInt(KEY_IS_MOVEMENTS, movements);
 
         // commint changes
         editor.commit();
 
         Log.d(TAG, "Movements session modified!");
     }
+
 }

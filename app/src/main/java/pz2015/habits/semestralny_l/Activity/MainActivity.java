@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,11 +16,13 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
+import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.Helpers.ConnectionManager;
 import pz2015.habits.semestralny_l.R;
-import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
-
+/*
+Login Screen activity
+ */
 public class MainActivity extends MY_Activity {
 
     private Button btnLogin;
@@ -29,20 +30,15 @@ public class MainActivity extends MY_Activity {
     private EditText editEmail;
     private EditText editPassword;
 
-    private static final String TAG_LOGIN = "login";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // set UI
         editEmail = (EditText) findViewById(R.id.email);
         editPassword = (EditText) findViewById(R.id.password);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnRegister);
-
-        // SessionManager
-        sessionManager = new SessionManager(getApplicationContext());
 
         // User is already logged?
         if (sessionManager.getIsLoggedIn()) {
@@ -82,7 +78,7 @@ public class MainActivity extends MY_Activity {
     private void checkLogin(String email, String password) {
         // Build list params
         List<NameValuePair> list = new ArrayList<>();
-        list.add(new BasicNameValuePair("tag", TAG_LOGIN));
+        list.add(new BasicNameValuePair("tag", AppConfig.TAG_LOGIN));
         list.add(new BasicNameValuePair("email", email));
         list.add(new BasicNameValuePair("password", password));
 

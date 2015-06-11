@@ -45,7 +45,10 @@
     <color name="bg_play_game">#ffffffff</color>
 
     <!-- Statistics Colors-->
-    <color name="bg_statistics">#ffff03a5</color>
+    <color name="bg_statistics">#ffff9600</color>
+
+    <color name="btn_send_statistics_bg">#ffffffff</color>
+    <color name="btn_send_statistics">#ffff9600</color>
 
 
     <color name="lbl_name">#333333</color>

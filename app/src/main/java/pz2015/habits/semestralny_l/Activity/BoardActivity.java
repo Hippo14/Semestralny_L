@@ -16,6 +16,9 @@ import pz2015.habits.semestralny_l.R;
 import pz2015.habits.semestralny_l.Helpers.MY_Button;
 
 
+/*
+Main board activity class
+ */
 public class BoardActivity extends MY_Activity {
 
     private static int NUM_ROWS;
@@ -36,14 +39,16 @@ public class BoardActivity extends MY_Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // get variables
         typeOfGame = sessionManager.getTypeOfGame();
         NUM_ROWS = sessionManager.getLevelI();
         NUM_COLS = sessionManager.getLevelI();
 
+        // set UI
         txtBoardSize = (TextView) findViewById(R.id.boardSizeText);
         txtBoardSize.setText(NUM_ROWS + "x" + NUM_COLS);
 
-
+        // new array
         myButtons = new MY_Button[NUM_ROWS][NUM_COLS];
 
         // populate my buttons
@@ -80,7 +85,7 @@ public class BoardActivity extends MY_Activity {
                     public void onClick(View v) {
                         gridMyButtonClicked(FINAL_COL, FINAL_ROW);
                         numberOfMovements++;
-                        //WIN
+                        // WIN
                         if (checkAllButtons()) {
                             endGame();
                         }

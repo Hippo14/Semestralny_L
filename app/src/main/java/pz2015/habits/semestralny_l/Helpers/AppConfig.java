@@ -1,11 +1,16 @@
 package pz2015.habits.semestralny_l.Helpers;
 
-/**
- * Created by ASUS on 2015-06-07.
+/*
+Class for Application settings.
  */
 public class AppConfig {
+
     // Server user API URL
-    public static String URL_API = "http://krzysiek.carimex.pl/android.php";
+    public static final String URL_API = "http://krzysiek.carimex.pl/android.php";
+
+    public static final String TAG_LOGIN = "login";
+    public static final String TAG_REGISTER = "register";
+    public static final String TAG_SYNCHRO = "synchro";
 
     /**
     * Created by ASUS on 2015-06-10.

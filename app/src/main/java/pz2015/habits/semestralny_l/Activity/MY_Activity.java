@@ -8,8 +8,8 @@ import android.view.Window;
 
 import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
-/**
- * Created by ASUS on 2015-06-10.
+/*
+Main abstract activity for others.
  */
 public abstract class MY_Activity extends Activity {
 

@@ -14,13 +14,10 @@ import java.util.List;
 
 import pz2015.habits.semestralny_l.Activity.UserActivity;
 
-/**
- * Created by ASUS on 2015-06-07.
+/*
+Managment connection with PHP server.
  */
 public class ConnectionManager extends AsyncTask<Void, Void, Void> {
-
-    private final String TAG_LOGIN = "login";
-    private final String TAG_REGISTER = "register";
 
     private Context context;
     private List<NameValuePair> list;
@@ -28,6 +25,7 @@ public class ConnectionManager extends AsyncTask<Void, Void, Void> {
     private JSONParser jParser;
     private SessionManager sessionManager;
     private ProgressDialog progressDialog;
+    private String successMsg = "Success!";
 
 
     public ConnectionManager(Context context, List<NameValuePair> list) {
@@ -72,22 +70,38 @@ public class ConnectionManager extends AsyncTask<Void, Void, Void> {
         boolean error = jParser.getError();
         String salt = " ";
         String name = " ";
+        String tag = " ";
 
         // Check for error in json
         if (!error) {
             // user successfully logged in
-            try {
-                salt = json.getString("salt");
-                name = json.getString("name");
-            } catch (JSONException e) {
 
+            // check tag
+            try {
+                tag = json.getString("tag");
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            // Create login session
-            sessionManager.setLogin(true, salt, name);
-            // Launch User Activity
-            Intent intent = new Intent(context, UserActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+
+            if (!tag.toString().equals(AppConfig.TAG_SYNCHRO.toString())) {
+                try {
+                    salt = json.getString("salt");
+                    name = json.getString("name");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                // Create login session
+                sessionManager.setLogin(true, salt, name);
+                // Launch User Activity
+                Intent intent = new Intent(context, UserActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+            else {
+                // Toast success
+                String errorMsg = jParser.getErrorMsg();
+                Toast.makeText(context, successMsg, Toast.LENGTH_LONG).show();
+            }
         }
         else {
             // error in login. Get the error message

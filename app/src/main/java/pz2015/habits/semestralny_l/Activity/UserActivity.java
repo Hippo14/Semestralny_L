@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-import pz2015.habits.semestralny_l.Helpers.AppConfig;
 import pz2015.habits.semestralny_l.R;
-import pz2015.habits.semestralny_l.Helpers.SessionManager;
 
 
+/*
+Main screen activity for logged user.
+ */
 public class UserActivity extends MY_Activity {
 
     private TextView txtName;
@@ -26,17 +26,18 @@ public class UserActivity extends MY_Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // set UI
         txtName = (TextView) findViewById(R.id.name);
 
         btnPlayGame = (Button) findViewById(R.id.btnPlayGame);
         btnStatistics = (Button) findViewById(R.id.btnStatistics);
         btnLogout = (Button) findViewById(R.id.btnLogout);
 
+        // If user isnt logged (just in case..)
         if (!sessionManager.getIsLoggedIn())
             logoutUser();
 
         String name = sessionManager.getName();
-
         txtName.setText(name);
 
         btnPlayGame.setOnClickListener(new View.OnClickListener() {

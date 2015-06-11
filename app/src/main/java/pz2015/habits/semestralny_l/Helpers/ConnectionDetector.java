@@ -4,8 +4,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/**
- * Created by ASUS on 2015-06-11.
+/*
+ Detecting if network service is ON on device.
  */
 public class ConnectionDetector {
 

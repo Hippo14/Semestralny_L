@@ -7,8 +7,8 @@ import android.widget.TableRow;
 
 import pz2015.habits.semestralny_l.R;
 
-/**
- * Created by ASUS on 2015-06-08.
+/*
+Its my button class for playing game.
  */
 public class MY_Button extends Button {
 
